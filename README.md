@@ -67,7 +67,7 @@ All results are available in the folders `images` and `data`.
 Main data source:
 
 * Colombian government: http://www.ins.gov.co/Noticias/Paginas/Coronavirus.aspx
-  * https://e.infogram.com/api/live/flex/bc384047-e71c-47d9-b606-1eb6a29962e3/972157a6-eaf7-4cde-a65b-8579bd4b0af1?
+  * https://e.infogram.com/api/live/flex/bc384047-e71c-47d9-b606-1eb6a29962e3/972157a6-eaf7-4cde-a65b-8579bd4b0af1
 
 ### Epidemiology model
 
