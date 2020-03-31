@@ -54,10 +54,6 @@ All results are available in the folders `images` and `data`.
 
 ![total](https://github.com/agastalver/sir-covid-19-colombia/raw/master/images/generated-total.png "Total cases")
 
-### Colombian cases per region
-
-![ccaa](https://github.com/agastalver/sir-covid-19-colombia/raw/master/images/generated-ccaa.png "CCAA cases")
-
 -----
 
 ## Methodology
