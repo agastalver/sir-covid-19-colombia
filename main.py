@@ -79,7 +79,7 @@ def fdelay(delay):
 
 delay = 0
 result = fdelay(delay)
-for d in range(10):
+for d in range(15):
     r2 = fdelay(d)
     print("delay: {}, fun: {}".format(d, r2.fun))
     if r2.fun < result.fun:
