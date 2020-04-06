@@ -22,29 +22,53 @@ SIR mathematical model for infectious diseases optimized for COVID-19 using Colo
 
 ### Case forecasting table
 
-| Date           | Infected   | Cases      |
-|:--------------:|:----------:|:----------:|
-| 2020-04-02     | 992        | 1038       |
-| 2020-04-03     | 1069       | 1121       |
-| 2020-04-04     | 1139       | 1199       |
-| 2020-04-05     | 1203       | 1270       |
-| 2020-04-06     | 1259       | 1334       |
-| 2020-04-07     | 1308       | 1391       |
-| 2020-04-08     | 1349       | 1441       |
-| 2020-04-09     | 1383       | 1484       |
-| 2020-04-10     | 1411       | 1521       |
-| 2020-04-11     | 1434       | 1552       |
+| Date           | Infected | Cases    |
+|:--------------:|:--------:|:--------:|
+| 2020-04-06     | 1407     | 1516     |
+| 2020-04-07     | 1508     | 1631     |
+| 2020-04-08     | 1607     | 1744     |
+| 2020-04-09     | 1701     | 1853     |
+| 2020-04-10     | 1791     | 1958     |
+| 2020-04-11     | 1874     | 2058     |
+| 2020-04-12     | 1951     | 2152     |
+| 2020-04-13     | 2020     | 2240     |
+| 2020-04-14     | 2111     | 2350     |
+| 2020-04-15     | 2189     | 2447     |
+| 2020-04-16     | 2254     | 2532     |
+| 2020-04-17     | 2306     | 2605     |
+| 2020-04-18     | 2348     | 2668     |
+| 2020-04-19     | 2380     | 2722     |
+| 2020-04-20     | 2404     | 2767     |
+| 2020-04-21     | 2420     | 2805     |
+| 2020-04-22     | 2429     | 2837     |
+| **2020-04-23** | **2434** | **2863** |
+| **2020-04-24** | **2434** | **2885** |
+| 2020-04-25     | 2430     | 2904     |
+| 2020-04-26     | 2423     | 2919     |
+| 2020-04-27     | 2414     | 2931     |
+| 2020-04-28     | 2402     | 2942     |
+
+
+
+
+
+
+
+
+
 
 ### Optimized SIR parameters
 
 ```
-N = 1708.9204590537092
-beta = 0.21682097117164512
-gamma = 0.006276694518173543
-delay = 10
+N = 2994.144636930857
+beta = 0.2252669434598542
+gamma = 0.00899172120277862
+delta = 0.7287707865648888
+delay = 9
 ```
 
-All results are available in the folders `images` and `data`.
+* `delta` stands for a factor of reduction of `beta` during the lockdown.
+* All results are available in the folders `images` and `data`.
 
 -----
 
@@ -63,7 +87,7 @@ All results are available in the folders `images` and `data`.
 Main data source:
 
 * Colombian government: http://www.ins.gov.co/Noticias/Paginas/Coronavirus.aspx
-  * https://e.infogram.com/api/live/flex/bc384047-e71c-47d9-b606-1eb6a29962e3/972157a6-eaf7-4cde-a65b-8579bd4b0af1
+  * https://e.infogram.com/api/live/flex/bc384047-e71c-47d9-b606-1eb6a29962e3/523ca417-2781-47f0-87e8-1ccc2d5c2839
 
 ### Epidemiology model
 
