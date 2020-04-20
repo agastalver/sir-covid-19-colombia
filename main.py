@@ -17,7 +17,7 @@ if not os.path.exists("images"):
 
 # download file
 
-url = "https://e.infogram.com/api/live/flex/bc384047-e71c-47d9-b606-1eb6a29962e3/523ca417-2781-47f0-87e8-1ccc2d5c2839"
+url = "https://e.infogram.com/api/live/flex/4524241a-91a7-4bbd-a58e-63c12fb2952f/302a0531-1ec8-4444-aa4f-f8cfd1d6492d"
 s = requests.get(url).text
 
 # read file
@@ -144,7 +144,7 @@ nlckdays = 32 # days
 
 delay = 0 # days back
 result = fdelay_lockdown(delay, lckday, nlckdays)
-for d in range(12):
+for d in range(10):
     #res = fdelay(d)
     res = fdelay_lockdown(d, lckday, nlckdays)
     print("delay: {}, fun: {}".format(d, res.fun))
