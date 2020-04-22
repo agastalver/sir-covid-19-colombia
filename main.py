@@ -17,7 +17,7 @@ if not os.path.exists("images"):
 
 # download file
 
-url = "https://e.infogram.com/api/live/flex/4524241a-91a7-4bbd-a58e-63c12fb2952f/302a0531-1ec8-4444-aa4f-f8cfd1d6492d"
+url = "https://e.infogram.com/api/live/flex/4524241a-91a7-4bbd-a58e-63c12fb2952f/fe40de25-f64d-445f-a026-224e4ca25999"
 s = requests.get(url).text
 
 # read file
@@ -29,10 +29,9 @@ dft = pd.DataFrame(data, columns=columns)
 dft.to_csv(os.path.join("data", "original-data.csv"), index=None)
 
 # prepare
-
 dft.columns = ["date", "dead", "cases", "recovered"]
-dft["date"] = pd.to_datetime(dft["date"], format="%d/%m")
-dft["date"] = dft["date"] + pd.offsets.DateOffset(year=2020)
+dates = pd.date_range(pd.to_datetime(dft.loc[0,"date"], format="%d/%m/%Y"), periods=len(dft), freq="D")
+dft["date"] = dates # pd.to_datetime(dft["date"], format="%d/%m/%Y")
 dft = dft.set_index("date")
 dft = dft.replace("",0).astype(np.float)
 
