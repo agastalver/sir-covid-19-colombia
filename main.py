@@ -17,29 +17,37 @@ if not os.path.exists("images"):
 
 # download file
 
-url = "https://e.infogram.com/api/live/flex/4524241a-91a7-4bbd-a58e-63c12fb2952f/fe40de25-f64d-445f-a026-224e4ca25999"
+url = "https://www.datos.gov.co/api/views/gt2j-8ykr/rows.csv"
 s = requests.get(url).text
+
+# write file
+datapath = os.path.join("data", "original-data.csv")
+with open(datapath, "w") as f:
+    f.write(s)
 
 # read file
 
-columns = json.loads(s)["data"][0][0]
-data = json.loads(s)["data"][0][1:]
-dft = pd.DataFrame(data, columns=columns)
+df = pd.read_csv(datapath)
+df = df.rename({"ID de caso": "cases", "Fecha de notificación": "date", "Fecha de muerte": "dead", "Fecha recuperado": "recovered"}, axis=1)
+df["date"] = pd.to_datetime(df["date"])
+df["recovered"] = pd.to_datetime(df["recovered"], errors='coerce')
+df["dead"] = pd.to_datetime(df["dead"], errors='coerce')
+df = df[["cases", "date", "dead", "recovered"]]
 
-dft.to_csv(os.path.join("data", "original-data.csv"), index=None)
+dft = df.groupby("date")["cases"].count().cumsum().resample("D").first().fillna(method="ffill")
+dft = dft.reset_index().set_index("date")
 
-# prepare
-dft.columns = ["date", "dead", "cases", "recovered"]
-dates = pd.date_range(pd.to_datetime(dft.loc[0,"date"], format="%d/%m/%Y"), periods=len(dft), freq="D")
-dft["date"] = dates # pd.to_datetime(dft["date"], format="%d/%m/%Y")
-dft = dft.set_index("date")
-dft = dft.replace("",0).astype(np.float)
+dft["dead"] = df.groupby("dead")["cases"].count().cumsum().resample("D").first().fillna(method="ffill")
+dft["recovered"] = df.groupby("recovered")["cases"].count().cumsum().resample("D").first().fillna(method="ffill")
+dft = dft.fillna(method="ffill").fillna(0)
 
 dfto = dft.copy()
 
 dfpct = 100*dft["dead"]/dft["cases"]
 dft["recovered"] = dft["recovered"] + dft["dead"] # as SIR model defines
 dft["infected"] = dft["cases"] - dft["recovered"]
+
+dft = dft[dft["cases"] > dft["recovered"]]
 
 # optimization SIR
 
@@ -139,7 +147,7 @@ def fdelay_lockdown(delay, lckday, nlckdays):
     return result
 
 lckday = dft.index.get_loc(pd.to_datetime("2020-03-25"))
-nlckdays = 32 # days
+nlckdays = 45 # days
 
 delay = 0 # days back
 result = fdelay_lockdown(delay, lckday, nlckdays)
@@ -240,3 +248,18 @@ ax.set_ylabel("# of occurences")
 ax.grid(True, which="both")
 plt.savefig(os.path.join("images", "generated-sir-cases.png"), format="png", dpi=300)
 plt.savefig(os.path.join("images", "generated-sir-cases.pdf"), format="pdf", dpi=300, metadata=metadata)
+
+# update
+with open("README.md") as f:
+    lines = f.readlines()
+
+data = dff.reset_index().loc[len(dft):len(dft)+9,["date","I","forecast"]].to_dict(orient="split")["data"]
+lines[24:34] = ["| {} | {:.0f} | {:.0f} |\n".format(d[0].date(), d[1], d[2]) for d in data]
+lines[38] = "N = {}\n".format(N)
+lines[39] = "beta = {}\n".format(beta)
+lines[40] = "gamma = {}\n".format(gamma)
+lines[41] = "delta = {}\n".format(delta)
+lines[42] = "delay = {}\n".format(delay)
+
+with open("README.md", "w") as f:
+    f.write("".join(lines))

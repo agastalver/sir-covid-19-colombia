@@ -2,8 +2,6 @@
 
 SIR mathematical model for infectious diseases optimized for COVID-19 using Colombian National Institute of Health public available data.
 
-> **IMPORTANT NOTE**: The information available is still very poor, please wait a couple of days to obtain a better adjustment.
-
 -----
 
 ![sir-cases](https://github.com/agastalver/sir-covid-19-colombia/raw/master/images/generated-sir-cases.png "SIR Model Cases")
@@ -24,31 +22,25 @@ SIR mathematical model for infectious diseases optimized for COVID-19 using Colo
 
 | Date           | Infected | Cases    |
 |:--------------:|:--------:|:--------:|
-| 2020-04-23     | 2998     | 4403     |
-| 2020-04-24     | 3062     | 4558     |
-| 2020-04-25     | 3119     | 4706     |
-| 2020-04-26     | 3167     | 4847     |
-| 2020-04-27     | 3310     | 5086     |
-| 2020-04-28     | 3431     | 5306     |
-| 2020-04-29     | 3529     | 5507     |
-| 2020-04-30     | 3604     | 5688     |
-| 2020-05-01     | 3659     | 5850     |
-| 2020-05-02     | 3693     | 5994     |
-| 2020-05-03     | 3710     | 6120     |
-| 2020-05-04     | 3711     | 6231     |
-| 2020-05-05     | 3698     | 6327     |
-| 2020-05-06     | 3673     | 6411     |
-| 2020-05-07     | 3638     | 6484     |
-| 2020-05-08     | 3594     | 6547     |
+| 2020-04-30 | 4428 | 6421 |
+| 2020-05-01 | 4466 | 6543 |
+| 2020-05-02 | 4498 | 6660 |
+| 2020-05-03 | 4524 | 6772 |
+| 2020-05-04 | 4545 | 6879 |
+| 2020-05-05 | 4560 | 6981 |
+| 2020-05-06 | 4570 | 7078 |
+| 2020-05-07 | 4575 | 7171 |
+| 2020-05-08 | 4576 | 7258 |
+| 2020-05-09 | 4572 | 7341 |
 
 ### Optimized SIR parameters
 
 ```
-N = 6997.183728053611
-beta = 0.2520341563678927
-gamma = 0.02931410029733797
-delta = 0.5573938113858803
-delay = 8
+N = 8890.81106200134
+beta = 0.29859990517497637
+gamma = 0.01888953974396548
+delta = 0.3373732836652978
+delay = 2
 ```
 
 * `delta` stands for a factor of reduction of `beta` during the lockdown.
@@ -71,7 +63,7 @@ delay = 8
 Main data source:
 
 * Colombian government: http://www.ins.gov.co/Noticias/Paginas/Coronavirus.aspx
-  * https://e.infogram.com/api/live/flex/4524241a-91a7-4bbd-a58e-63c12fb2952f/fe40de25-f64d-445f-a026-224e4ca25999
+  * https://www.datos.gov.co/api/views/gt2j-8ykr/rows.csv
 
 ### Epidemiology model
 
